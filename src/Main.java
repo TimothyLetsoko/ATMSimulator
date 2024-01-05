@@ -1,10 +1,7 @@
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
-import java.util.Objects;
 
 public class Main extends Application {
     public static void main(String[] args) {
@@ -12,10 +9,10 @@ public class Main extends Application {
     }
 
     @Override
-    public void start(Stage stage) throws Exception {
+    public void start(Stage stage) {
         try{
-            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("screens\\logIn.fxml")));
-            Scene scene = new Scene(root);
+            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("screens/login.fxml"));
+            Scene scene = new Scene(fxmlLoader.load());
             stage.setScene(scene);
             stage.setTitle("ATM Simulation");
             stage.show();
