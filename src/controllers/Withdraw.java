@@ -8,6 +8,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -17,41 +18,43 @@ import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
-public class WelcomeScreen implements Initializable {
-    Parent root;
-    Stage stage;
-    Scene scene;
+public class Withdraw implements Initializable {
+
     @FXML
     private Label lblDate;
 
     @FXML
-    void deposit() {
+    private Label lblResponse;
 
+    @FXML
+    private TextField tfWithdrawalAmount;
+
+    @FXML
+    void backToWelcomeScreen(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/screens/welcomeScreen.fxml")));
+        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setResizable(false);
+        stage.setScene(scene);
+        stage.setTitle("Welcome");
+        stage.show();
     }
 
     @FXML
-    void exit(ActionEvent event) throws IOException {
-        operations(event, "login","ATM Simulation");
+    void clearWithdrawalAmount() {
+        lblResponse.setText("");
+        tfWithdrawalAmount.clear();
+        tfWithdrawalAmount.setPromptText("R 100.00");
     }
 
     @FXML
-    void options() {
-
+    void hideResponseMsg() {
+        lblResponse.setText("");
     }
 
     @FXML
-    void printStatement() {
+    void withdrawMoney() {
 
-    }
-
-    @FXML
-    void showBalance() {
-
-    }
-
-    @FXML
-    void withdraw(ActionEvent event) throws IOException {
-        operations(event,"withdraw","Withdraw");
     }
 
     @Override
@@ -59,14 +62,5 @@ public class WelcomeScreen implements Initializable {
         LocalDateTime localDateTime = LocalDateTime.now();
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
         lblDate.setText(localDateTime.format(dateTimeFormatter));
-    }
-    void operations(ActionEvent event, String screen, String screenTitle) throws IOException {
-        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/screens/"+screen+".fxml")));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setResizable(false);
-        stage.setScene(scene);
-        stage.setTitle(screenTitle);
-        stage.show();
     }
 }

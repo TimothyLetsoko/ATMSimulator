@@ -14,6 +14,7 @@ public class Main extends Application {
             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("screens/login.fxml"));
             Scene scene = new Scene(fxmlLoader.load());
             stage.setScene(scene);
+            stage.setResizable(false);
             stage.setTitle("ATM Simulation");
             stage.show();
         }catch (Exception e){

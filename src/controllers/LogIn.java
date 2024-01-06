@@ -39,8 +39,9 @@ public class LogIn {
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/screens/welcomeScreen.fxml")));
             Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
             Scene scene = new Scene(root);
+            stage.setResizable(false);
             stage.setScene(scene);
-            stage.setTitle("ATM Simulation");
+            stage.setTitle("Welcome");
             stage.show();
         }else{
             lblErrorMsg.setText("Unauthorized User!!!");
